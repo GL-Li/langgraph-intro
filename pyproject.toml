@@ -22,6 +22,7 @@ packages = ["scout"]
 
 [dependency-groups]
 dev = [
+    "ipdb>=0.13.13",
     "ipykernel>=6.29.5",
     "langgraph-api>=0.2.18",
     "langgraph-cli>=0.2.6",

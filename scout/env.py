@@ -3,7 +3,8 @@ import os
 
 load_dotenv()  # take environment variables from .env.
 
-
+# import ipdb
+# ipdb.set_trace()
 SUPABASE_URL=os.getenv("SUPABASE_URL", None)
 OPENAI_API_KEY=os.getenv("OPENAI_API_KEY", None)
 LANGSMITH_API_KEY=os.getenv("LANGSMITH_API_KEY", None)
