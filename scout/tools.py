@@ -115,6 +115,8 @@ def generate_visualization(
     import io
     import os
     from contextlib import redirect_stdout, redirect_stderr
+    # import ipdb
+    # ipdb.set_trace()
 
     # Create the output directory if it doesn't exist
     os.makedirs("output", exist_ok=True)
@@ -145,7 +147,7 @@ df = pd.read_sql(text("""{sql_query}"""), engine)
 
 # Save the figure to JSON
 if 'fig' in locals() or 'fig' in globals():
-    fig_json = pio.to_json(fig)
+    fig_json = pio.to_json(fig, pretty=True)
     with open('{file_path}', 'w') as f:
         f.write(fig_json)
 '''
