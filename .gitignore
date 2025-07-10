@@ -19,3 +19,6 @@ wheels/
 
 # macOS
 .DS_Store
+
+# generated files
+output/

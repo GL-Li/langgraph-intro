@@ -1,3 +1,15 @@
+# Updated README
+To run the project locally:
+- install the package with `$ uv pip install -e .`
+- run locally with 
+    - `$ python -m frontend.chat_local`
+    - or `$ python frontend/chat_local.py`
+
+
+
+Original README
+================================================================================
+
 # LangGraph Intro
 
 This project gives a fundamental introduction to LangGraph by using it to build a simple but powerful data analytics AI agent that can query your database, perform analyses, and generate visualizations. This is an end-to-end, full-deployed AI agent that will teach you core Langgraph concepts so that you can build amazing AI systems yourself. It's meant to be a starting point so add to this example to expand on the agent's capabilities and create your own full-deployed AI agents. Everything covered is free except for usage of the OpenAI API - however feel free to adopt the code to use any provider including local models for free.
