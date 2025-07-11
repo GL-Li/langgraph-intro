@@ -13,6 +13,7 @@ from scout.prompts import prompts
 class  ScoutState(BaseModel):
     messages: Annotated[List[BaseMessage], add_messages] = []
     chart_json: str = ""
+    new_chart: bool = False
 
 
 class Agent:
@@ -52,6 +53,10 @@ class Agent:
         """
         Build the LangGraph application.
         """
+        def reset_to_not_new_chart(state: ScoutState) -> dict:
+            return {"new_chart": False}
+
+
         def scout_node(state: ScoutState) -> ScoutState:
             response = self.llm.invoke(
                 [SystemMessage(content=self.system_prompt)] +
@@ -69,10 +74,12 @@ class Agent:
 
         builder = StateGraph(ScoutState)
 
+        builder.add_node("set_to_old_chart", reset_to_not_new_chart)
         builder.add_node("chatbot", scout_node)
         builder.add_node("tools", ToolNode(self.tools))
 
-        builder.add_edge(START, "chatbot")
+        builder.add_edge(START, "set_to_old_chart")
+        builder.add_edge("set_to_old_chart", "chatbot")
         builder.add_conditional_edges("chatbot", router, ["tools", END])
         builder.add_edge("tools", "chatbot")
 

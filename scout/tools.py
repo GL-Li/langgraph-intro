@@ -176,10 +176,12 @@ if 'fig' in locals() or 'fig' in globals():
         if os.path.exists(file_path):
             with open(file_path, "r") as f:
                 fig_json = f.read()
+
             return Command(
                 update={
                     # update the state keys
                     "chart_json": fig_json,
+                    "new_chart": True,
                     # update the message history
                     "messages": [
                         ToolMessage(

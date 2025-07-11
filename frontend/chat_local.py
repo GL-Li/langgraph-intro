@@ -21,7 +21,7 @@ def main():
         # Stream responses
         while True:
             user_input = input("User: ")
-            if user_input.lower() in ["exit", "quit"]:
+            if user_input.lower() in ["exit", "quit", "q"]:
                 break
 
             print(f"\n---- User ---- \n\n{user_input}\n")
@@ -34,9 +34,12 @@ def main():
                 if message_chunk:
                     print(message_chunk, end="", flush=True)
 
+
+            # import ipdb
+            # ipdb.set_trace()
             thread_state = agent.runnable.get_state(config=config)
 
-            if "chart_json" in thread_state.values:
+            if thread_state.values["new_chart"]:
                 chart_json = thread_state.values["chart_json"]
                 if chart_json:
                     import plotly.io as pio
